@@ -1,6 +1,6 @@
-#Project overview:
+# Project overview:
 This is a project for the Udacity Full Stack Web Developer nanodegree program and is aimed at increasing the student's proficiency with SQL.
-##Details:
+## Details:
 Python is used to interact with a large SQL database containing over a million rows from a news website.
 The goal is to build and refine complex queries and use them to draw business conclusions from the data. It will use a single SQL statement to answer each one of the following three questions about the site.
 
@@ -10,7 +10,7 @@ The goal is to build and refine complex queries and use them to draw business co
 
 This code uses PostgreSQL and python. It uses a sigle SQL select statement to get results from the database and returns the result as a python list that is then displayed.
 
-##Instructions for running the code:
+## Instructions for running the code:
 1. Download and install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/).
 2. Download the following Udacity [folder](https://d17h27t6h515a5.cloudfront.net/topher/2017/August/59822701_fsnd-virtual-machine/fsnd-virtual-machine.zip) which contains preconfigured vagrant settings.
 3. Clone this repository.
