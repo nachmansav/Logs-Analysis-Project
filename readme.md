@@ -19,6 +19,7 @@ This code uses PostgreSQL and python. It uses a sigle SQL select statement to ge
 7. Once Vagrant installs the necessary files use 'vagrant ssh' to connect to the virtual machine.
 8. Cd into the '/vagrant' folder.
 9. Copy the contents of this repository to this directory.
+10. Add the database file to the same directory. It can be found [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip).
 10. Load the database with the command 'psql -d news -f newsdata.sql'.
 11. Run the database with the command 'psql -d news'.
 12. Use the command 'python logs.py' to run the python program and display the query results.
