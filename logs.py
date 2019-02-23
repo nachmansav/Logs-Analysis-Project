@@ -1,16 +1,25 @@
+#!/usr/bin/env python3
+
 import psycopg2
 
 dbname = "news"
 
+try:
+    db = psycopg2.connect(database=dbname)
+except psycopg2.Error as e:
+    print("Unable to connect to the database")
+    print(e.pgerror)
+    print(e.diag.message_detail)
+    sys.exit(1)
+
+c = db.cursor()
 
 def popular_articles():
     """Display the three most popular articles."""
-    db = psycopg2.connect(database=dbname)
-    c = db.cursor()
     c.execute("select articles.title,"
               " count(log.path) as views"
               " from articles, log "
-              "where log.path like concat('%',articles.slug,'%')"
+              "where log.path like concat('%',articles.slug)"
               " group by articles.title order by views desc limit 3;")
     result1 = list(c.fetchall())
     db.close()
@@ -22,12 +31,10 @@ def popular_articles():
 
 def popular_authors():
     """Display the popularity of the authors based on page views."""
-    db = psycopg2.connect(database=dbname)
-    c = db.cursor()
     c.execute("select authors.name,"
               " count(log.path) as views"
               " from authors, log, articles"
-              " where log.path like concat('%',articles.slug,'%') "
+              " where log.path like concat('%',articles.slug) "
               "and articles.author = authors.id "
               "group by authors.name order by views desc;")
     result2 = list(c.fetchall())
@@ -43,8 +50,6 @@ def popular_authors():
 
 def days_with_errors():
     """Return the day where more than 1% of requests led to errors."""
-    db = psycopg2.connect(database=dbname)
-    c = db.cursor()
     c.execute("with views as (select date(time) as day,"
               " count(id) as views from log "
               "group by date(time) order by day),"
