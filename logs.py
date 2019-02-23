@@ -14,6 +14,7 @@ except psycopg2.Error as e:
 
 c = db.cursor()
 
+
 def popular_articles():
     """Display the three most popular articles."""
     c.execute("select articles.title,"
@@ -22,7 +23,6 @@ def popular_articles():
               "where log.path like concat('%',articles.slug)"
               " group by articles.title order by views desc limit 3;")
     result1 = list(c.fetchall())
-    db.close()
     print('\n The three most popular articles of all time are:')
     for i in range(len(result1)):
         print('\t {} --- {} views'.format
@@ -45,7 +45,6 @@ def popular_authors():
 
     print('\t {} --- {} views'.format
           (str(result2[3])[2:-9], str(result2[3])[-7:-1]))
-    db.close()
 
 
 def days_with_errors():
